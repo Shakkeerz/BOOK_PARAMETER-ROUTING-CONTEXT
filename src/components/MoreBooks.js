@@ -21,9 +21,9 @@ function MoreBooks() {
           const { id, title, image_url } = book;
           return (
             <div key={id}>
-              <div className="w-40">
+              <Link to={`/fullbookdetails/${id}`}><div className="w-40">
                 <img src={image_url} alt={title} className="w-full" />
-              </div>
+              </div></Link>
             </div>
           );
         })}
