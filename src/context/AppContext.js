@@ -14,11 +14,9 @@ const ContextProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [BookLimit, setBookLimit] = useState(10);
+  const [BookLimit, setBookLimit] = useState(20);
 
-  const fetchBooks = async (limit) => {
-    console.log(limit);
-    console.log(BookLimit);
+  const fetchBooks = async () => {
     setLoading(true);
     await axios
       .get(`https://example-data.draftbit.com/books?_limit=${BookLimit}`)
@@ -33,8 +31,10 @@ const ContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
+
     fetchBooks();
-  }, []);
+   
+  }, [BookLimit]);
 
   // const bookLimitFun=(e)=>{
   //   setBookLimit(50)

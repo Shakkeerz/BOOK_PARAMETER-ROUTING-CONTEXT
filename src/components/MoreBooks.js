@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import BookCard from "./BookCard";
-
+import {BsCaretDownFill} from 'react-icons/bs'
 function MoreBooks() {
     // infinite looping INTERSECTION OBSERVER
-  const { books, loading, error } = useContext(AppContext);
+  const { books, loading, error ,setBookLimit} = useContext(AppContext);
   return (
     <div className="relative p-5">
       <Link to="/">
@@ -13,7 +12,7 @@ function MoreBooks() {
       </Link>
       <div className="flex gap-2 flex-wrap w-full mt-8 ">
         {loading && (
-          <div className="text-center font-bold text-5xl"> Loading...</div>
+          <div className="flex  h-screen w-full justify-center items-start font-bold"> Loading...</div>
         )}
         {error && <div>Error</div>}
 
@@ -27,7 +26,16 @@ function MoreBooks() {
             </div>
           );
         })}
+        
       </div>
+      {loading && <div>Loading...</div>}
+     {  (!loading) && books &&
+       < div className="bg-blue-700 hover:bg-blue-900 text-center font-semibold flex justify-center items-center gap-1 cursor-pointer" onClick={()=>setBookLimit(currLimit=>currLimit + 20)}>
+       Show More
+       <BsCaretDownFill className=""/>
+     </div>
+     }
+        
     </div>
   );
 }

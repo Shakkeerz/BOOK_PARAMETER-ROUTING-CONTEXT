@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function BookCard({book}) {
-    const {id,title,authors,description,image_url} =book
+    const {id,title,image_url} =book
   return (
     <>
         <Link to={`/fullbookdetails/${id}`} ><div key={id}>

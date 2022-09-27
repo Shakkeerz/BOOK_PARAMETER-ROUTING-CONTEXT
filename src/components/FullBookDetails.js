@@ -16,7 +16,6 @@ function FullBookDetails() {
       .get(`https://example-data.draftbit.com/books?_limit=10&id=${id}`)
       .then((res) => {
         setBookDetails(res.data);
-        console.log(bookDetails);
         setLoading(false)
       });
 
@@ -40,6 +39,7 @@ function FullBookDetails() {
       </div>}
       {Array.from(bookDetails)?.map((book) => {
         const {
+          id,
           title,
           image_url,
           authors,
@@ -49,7 +49,7 @@ function FullBookDetails() {
           num_pages,
         } = book;
         return (
-          <div className="flex flex-col flex-wrap md:flex-nowrap md:flex-row p-10  md:items-center justify-center  border-4 border-slate-500 ">
+          <div className="flex flex-col flex-wrap md:flex-nowrap md:flex-row p-10  md:items-center justify-center  border-4 border-slate-500 " key={id}>
             <div className="md:w-1/2">
               <img src={image_url} alt={title} />
             </div>
